@@ -11,23 +11,20 @@ int* combinarArraysOrdenats(int* arr1, int long1, int* arr2, int long2)
 
 	while (i < long1 and j < long2){
 		if(arr1[i] < arr2[j]){
-			arr3[k] = arr1[i];
+			wombocombo[k] = arr1[i];
 		}
 		else{
-			arr3[k] = arr2[j];
+			wombocombo[k] = arr2[j];
 		}
 	
 	}
-	
-	for (int i = 0; i < Length; i++) {
-		if (i % 2 == 0) {
-			wombocombo[i] = arr1[ctr1];
-			ctr1++;
-		}
-		else {
-			wombocombo[i] = arr2[ctr2];
-			ctr2++;
-		}
+	for (int l = i; l < long1; l++){
+		wombocombo[k] = arr1[l];
+		k++;
+	}
+	for (int l = j; l < long2; l++){
+		wombocombo[k] = arr2[l];
+		k++;
 	}
 	return wombocombo;
 }
