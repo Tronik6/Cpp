@@ -1,13 +1,24 @@
 #include <iostream>
 using namespace std;
 
-int* combinarArraysOrdenats(int* arr1, int longitud1, int* arr2, int longitud2)
+int* combinarArraysOrdenats(int* arr1, int long1, int* arr2, int long2)
 {
 	int Length = longitud1 + longitud2;
 	int* wombocombo = (int*)malloc(Length * sizeof(int*));
-	int ctr1 = 0;
-	int ctr2 = 0;
+	int i = 0;
+	int j = 0;
+	int k = 0;
 
+	while (i < long1 and j < long2){
+		if(arr1[i] < arr2[j]){
+			arr3[k] = arr1[i];
+		}
+		else{
+			arr3[k] = arr2[j];
+		}
+	
+	}
+	
 	for (int i = 0; i < Length; i++) {
 		if (i % 2 == 0) {
 			wombocombo[i] = arr1[ctr1];
