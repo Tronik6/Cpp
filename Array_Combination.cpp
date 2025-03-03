@@ -1,55 +1,47 @@
 #include <iostream>
 using namespace std;
 
-int* combinarArraysOrdenats(int* arr1, int long1, int* arr2, int long2)
+void combinarArraysOrdenats(int* arr1, int long1, int* arr2, int long2)
 {
-	int Length = longitud1 + longitud2;
-	int* wombocombo = (int*)malloc(Length * sizeof(int*));
-	int i = 0;
-	int j = 0;
-	int k = 0;
+    int Length = long1 + long2;
+    int* wombocombo = new int[Length];  // Uso de new en lugar de malloc
+    int i = 0, j = 0, k = 0;
 
-	while (i < long1 and j < long2){
-		if(arr1[i] < arr2[j]){
-			wombocombo[k] = arr1[i];
-		}
-		else{
-			wombocombo[k] = arr2[j];
-		}
-	
-	}
-	for (int l = i; l < long1; l++){
-		wombocombo[k] = arr1[l];
-		k++;
-	}
-	for (int l = j; l < long2; l++){
-		wombocombo[k] = arr2[l];
-		k++;
-	}
-	return wombocombo;
+    // Mezclando los dos arreglos en orden
+    while (i < long1 and j < long2) {
+        if (arr1[i] < arr2[j]) {
+            wombocombo[k++] = arr1[i++];
+        }
+        else {
+            wombocombo[k++] = arr2[j++];
+        }
+    }
+
+    // Agregar los elementos restantes de arr1
+    while (i < long1) {
+        wombocombo[k++] = arr1[i++];
+    }
+
+    // Agregar los elementos restantes de arr2
+    while (j < long2) {
+        wombocombo[k++] = arr2[j++];
+    }
+
+    // Imprimir el array combinado
+    for (int m = 0; m < Length; ++m) {
+        cout << wombocombo[m] << endl;
+    }
+
+    delete[] wombocombo;  // Liberar memoria
 }
 
-
-
 int main() {
+    int arr1[] = { 1, 3, 5, 7, 9 };
+    int arr2[] = { 2, 4, 6, 8, 10, 11, 12 };
+    int longitud1 = sizeof(arr1) / sizeof(int);
+    int longitud2 = sizeof(arr2) / sizeof(int);
 
-	int arr1[] = { 1, 3, 5, 7, 9 };
-	int arr2[] = { 2, 4, 6, 8, 10 };
+    combinarArraysOrdenats(arr1, longitud1, arr2, longitud2);
 
-	// busqueu la forma de saber la mida de l'array
-
-	int longitud1 = sizeof(arr1) / sizeof(int);
-	int longitud2 = sizeof(arr2) / sizeof(int);
-	int* resultat = combinarArraysOrdenats(arr1, longitud1, arr2, longitud2);
-	std::cout << "L'array combinat ordenat és: ";
-	for (int i = 0; i < longitud1 + longitud2; ++i) {
-		cout << resultat[i] << " ";
-	}
-	cout << endl;
-
-	// Alliberar la memòria de l'array resultat
-
-	delete[] resultat;
-
-	return 0;
+    return 0;
 }
