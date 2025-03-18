@@ -67,42 +67,121 @@ public:
 	int getrange() { return this->Range; }
 };
 
-void MageSeterAndPrinter() {
-	int num = 1;
-	string name;
-	vector <Mago> m;
 
-	cout << "Introduce the number of Mages in your party" << endl;
-	cin >> num;
-	for (int i = 0; i < num; i++) {
-		cout << "Which is the name of the Mage " << i+1 << endl;
-		cin >> name;
 
-		m.push_back(Mago( name, 1, 700, 75, 400));
-	}
-	for (int i = 0; i < num; i++) {
-		cout << "Name: " << m[i].getName() << endl;
-		cout << "Vida: " << m[i].getVida() << endl;
-		cout << "Nivel: " << m[i].getLVL() << endl;
-		cout << "Magic Power: " << m[i].getMP() << endl;
-		cout << "Mana: " << m[i].getmana() << endl;
-		cout << "\n\n" << endl;
-	}
+void partyPrinter(vector<Mago>&m, int mNumber, vector<Guerrer>&g,int gNumber, vector<Arquer>&a, int aNumber) {
+	cout << "Which members of the party would you like to see? Mage/s | Warrior/s | Archer/s (introduce M/W/A) \n If you would like to stop type 's'"  << endl;
+	char type;
+	cin >> type;
+	while (type != 's' && type != 'S') {
+		if (type == 'm' || type == 'M') {
+			if (mNumber == 0) {
+				cout << "There are no Mages in the party" << endl;
+			}
+			else {
+				for (int i = 0; i < mNumber; i++) {
+					cout << "Mage " << i + 1 << "\n" << endl;
+					cout << "Name: " << m[i].getName() << endl;
+					cout << "Health: " << m[i].getVida() << endl;
+					cout << "Level: " << m[i].getLVL() << endl;
+					cout << "Magic Power: " << m[i].getMP() << endl;
+					cout << "Mana: " << m[i].getmana() << endl;
+					cout << "\n\n" << endl;
+				}
+			}
+		}
+		else if (type == 'w' || type == 'W') {
+			if (gNumber == 0) {
+				cout << "There are no Warriors in the party" << endl;
+			}
+			else{
+				for (int i = 0; i < gNumber; i++) {
+					cout << "Warrior " << i + 1 << "\n" << endl;
+					cout << "Name: " << g[i].getName() << endl;
+					cout << "Health: " << g[i].getVida() << endl;
+					cout << "Level: " << g[i].getLVL() << endl;
+					cout << "Fisic Power: " << g[i].getFP() << endl;
+					cout << "\n\n" << endl;
+				}
+			}
+		}
+		else if (type == 'a' || type == 'A') {
+			if (aNumber == 0) {
+				cout << "There are no Archers in the party" << endl;
+			}
+			else {
+				for (int i = 0; i < aNumber; i++) {
+					cout << "Archer " << i + 1 << "\n" << endl;
+					cout << "Name: " << a[i].getName() << endl;
+					cout << "Health: " << a[i].getVida() << endl;
+					cout << "Level: " << a[i].getLVL() << endl;
+					cout << "Range: " << a[i].getrange() << endl;
+					cout << "\n\n" << endl;
+				}
+			}
+		}
+		else {
+			cout << "You dumb bitch >:(" << endl;
+		}
+		cout << "\n\n\n" << endl;
+		cout << "Which members of the party would you like to see? Mage/s | Warrior/s | Archer/s (introduce M/W/A) \n If you would like to stop type 's'" << endl;
+		cin >> type;
+	}	
 }
-
 
 int main() {
 
-	MageSeterAndPrinter();
+	int mNumber = 1;
+	string mName;
+	vector <Mago> m;
 
+	cout << "Introduce the number of Mages in your party" << endl;
+	cin >> mNumber;
+	if (mNumber > 0) {
+		for (int i = 0; i < mNumber; i++) {
+			cout << "Which is the name of the Mage " << i + 1 << endl;
+			cin >> mName;
 
-	/*int nlvl;
-	cout << "Levelea-me polfavol: " << endl;
-	cin >> nlvl;
-	m[0].modificar_nivell(nlvl);
+			m.push_back(Mago(mName, 700, 1, 75, 400));
+			cout << "\n" << endl;
+		}
+	}
+	
+	int gNumber = 1;
+	string gName;
+	vector <Guerrer> g;
 
-	cout << "Subiste de nivel"<< endl;
-	cout << "Nivel: " << m[0].getLVL() << endl;*/
+	cout << "Introduce the number of Warriors in your party" << endl;
+	cin >> gNumber;
+	if (gNumber > 0) {
+		for (int i = 0; i < gNumber; i++) {
+
+			cout << "Which is the name of the Warrior " << i + 1 << endl;
+			cin >> gName;
+
+			g.push_back(Guerrer(gName, 1200, 1, 67));
+			cout << "\n" << endl;
+		}
+	}
+	
+	int aNumber = 1;
+	string aName;
+	vector <Arquer> a;
+
+	cout << "Introduce the number of Archers in your party" << endl;
+	cin >> aNumber;
+	if (aNumber > 0) {
+		for (int i = 0; i < aNumber; i++) {
+
+			cout << "Which is the name of the Archers " << i + 1 << endl;
+			cin >> aName;
+
+			a.push_back(Arquer(aName, 800, 1, 150));
+			cout << "\n" << endl;
+		}
+	}
+
+	partyPrinter(m, mNumber, g, gNumber, a, aNumber);
 
 
 	return 0;
